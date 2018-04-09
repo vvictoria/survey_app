@@ -1,0 +1,60 @@
+﻿{
+    "stages": [
+        {
+            "name": "Personal information",
+            "description": "RocketRoute would like to give you the best product. This survey will take few seconds.",
+            "questions": [
+                {
+                    "header": "name",
+                    "text": "My name is ___",
+                    "dev_meta": "String, length: 3­255"
+                },
+                {
+                    "header": "email",
+                    "text": "I’m using ___ email",
+                    "dev_meta": "String, email valid"
+                },
+                {
+                    "header": "phone",
+                    "text": "And my phone number is ____",
+                    "dev_meta": "Phone input, Valid US phone number, optional"
+                }
+            ]
+        },
+        {
+            "name": "Address",
+            "description": "We need your address to confirm our best offer",
+            "questions": [
+                {
+                    "header": "country",
+                    "text": "I live in ____",
+                    "dev_meta": "Select with search, Country name"
+                },
+                {
+                    "header": "zip",
+                    "text": "My zip code is ____",
+                    "dev_meta": "String, Valid zip code"
+                }
+            ]
+        },
+        {
+            "name": "General information",
+            "description": "These answers provides deeper insights to craft something special",
+            "questions": [
+                {
+                    "header": "income",
+                    "text": "My family makes $____ per year",
+                    "dev_meta": "Number bigger then 0"
+                },
+                {
+                    "header": "family members",
+                    "text": "There is __ person in my tax household",
+                    "dev_meta": "Select, numbers from 1 up to 10"
+                }
+            ]
+        }
+    ],
+    "finish": {
+        "description": "Thanks for your answers. We will get back to you within 24 hours with our amazing product"
+    }
+};
