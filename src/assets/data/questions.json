@@ -6,30 +6,30 @@
             "description": "RocketRoute would like to give you the best product. This survey will take few seconds.",
             "questions": [
                 {
-                    "id": 0,
-                    "header": "name",
+                    "id": 1,
+                    "name": "name",
                     "text": "My name is ***",
                     "input": {
                         "type": "text",
-                        "val_type": "name // length: 3­255"
-                    }
-                },
-                {
-                    "id": 1,
-                    "header": "email",
-                    "text": "I’m using *** email",
-                    "input": {
-                        "type": "email",
-                        "val_type": "email // String, email valid"
+                        "validation_rule": "required|alpha"
                     }
                 },
                 {
                     "id": 2,
-                    "header": "phone",
+                    "name": "email",
+                    "text": "I’m using *** email",
+                    "input": {
+                        "type": "email",
+                        "validation_rule": "required|email"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "phone",
                     "text": "And my phone number is ***",
                     "input": {
                         "type": "tel",
-                        "val_type": "tel // Phone input, Valid US phone number, optional"
+                        "validation_rule": "required|regex:^((\\d)\\D)?(\\(?(\\d\\d\\d)\\)?)?\\D(\\d\\d\\d)\\D(\\d\\d\\d\\d)$"
                     }
                 }
             ]
@@ -40,21 +40,21 @@
             "description": "We need your address to confirm our best offer",
             "questions": [
                 {
-                    "id": 0,
-                    "header": "country",
+                    "id": 4,
+                    "name": "country",
                     "text": "I live in ***",
                     "input": {
                         "type": "______________",
-                        "val_type": "country // Select with search, Country name"
+                        "validation_rule": "country // Select with search, Country name"
                     }
                 },
                 {
-                    "id": 1,
-                    "header": "zip",
+                    "id": 5,
+                    "name": "zip",
                     "text": "My zip code is ***",
                     "input": {
                         "type": "number",
-                        "val_type": "zip // String???, Valid zip code"
+                        "validation_rule": "required|regex:^\\d{5}(?:[-\\s]\\d{4})?$"
                     }
                 }
             ]
@@ -65,21 +65,21 @@
             "description": "These answers provides deeper insights to craft something special",
             "questions": [
                 {
-                    "id": 0,
-                    "header": "income",
+                    "id": 6,
+                    "name": "income",
                     "text": "My family makes $*** per year",
                     "input": {
                         "type": "number",
-                        "val_type": "income // Number bigger then 0"
+                        "validation_rule": "reqired|min:1"
                     }
                 },
                 {
-                    "id": 1,
-                    "header": "family members",
+                    "id": 7,
+                    "name": "family_members",
                     "text": "There is *** person in my tax household",
                     "input": {
                         "type": "number",
-                        "val_type": "family // Select, numbers from 1 up to 10"
+                        "validation_rule": "freqired|min:1|max:10"
                     }
                 }
             ]

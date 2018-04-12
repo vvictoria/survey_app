@@ -15,7 +15,7 @@ export default new Router({
             component: Start,
         },
         {
-            path: '/stage/:stageId',
+            path: '/stages/:stageId',
             props: true,
             name: 'stage',
             component: Stage
