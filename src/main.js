@@ -4,10 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VeeValidate from 'vee-validate'
+import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(VeeValidate)
+Vue.use(VeeValidate);
+Vue.use(BootstrapVue);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -15,4 +17,4 @@ new Vue({
     router,
     components: {App},
     template: '<App/>'
-})
+});

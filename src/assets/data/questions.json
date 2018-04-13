@@ -70,7 +70,7 @@
                     "text": "My family makes $*** per year",
                     "input": {
                         "type": "number",
-                        "validation_rule": "reqired|min:1"
+                        "validation_rule": "required|min:1"
                     }
                 },
                 {
@@ -79,7 +79,7 @@
                     "text": "There is *** person in my tax household",
                     "input": {
                         "type": "number",
-                        "validation_rule": "freqired|min:1|max:10"
+                        "validation_rule": "required|min:1|max:10"
                     }
                 }
             ]
