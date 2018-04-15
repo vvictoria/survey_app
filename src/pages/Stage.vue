@@ -5,30 +5,37 @@
         </div>
         <div class="content">
             Progress {{ progress }}
-            <h1>Stages:</h1>
-            {{ stage.id }}
-            {{ stage.name }}
+            <h1>Stage {{ stage.id }}</h1>
             <div v-for="question in stage.questions" :key="question.id">
-                {{ question.text }}
+                {{ question.text.split(/ ?\*\*\* ?/)[0] }}
+                <select
+                    v-if="question.input.type == 'country'"
+                    :name="question.name"
+                    :class="{'form-control': true, 'is-invalid': errors.has(question.name)}"
+                    v-validate="question.input.validation_rule"
+                    style="width: 200px; display: inline-block"
+                >
+                    <option v-for="country in countryList" :key="country.alpha2Code">
+                        {{ country.name }}
+                    </option>
+                </select>
                 <input
+                    style="width: 200px; display: inline-block"
+                    v-else
                     :type="question.input.type"
                     v-validate="question.input.validation_rule"
                     :name="question.name"
                     @change="processOne"
-                    :class="{'is-invalid': errors.has(question.name)}"
-                    class="form-control"
+                    :class="{'form-control': true, 'is-invalid': errors.has(question.name)}"
                 >
+                {{ question.text.split(/ ?\*\*\* ?/)[1] }}
                 <span v-show="errors.has(question.name)" class="invalid-feedback">{{ errors.first(question.name) }}</span>
             </div>
         </div>
         <div>
-            <router-link
-                :to="nextStage ? {name: 'stage', params: {stageId: '' + nextStage.id}} : {name: 'finish'}"
-                @click.native="validate($event)"
-            >
-                <div v-if="nextStage !== null">Next</div>
-                <div v-if="nextStage === null">Finish</div>
-            </router-link>
+            <a :href="nextStage ? ('#/stages/' + nextStage.id) : '#/finish'" @click="validate">
+                &rsaquo;&rsaquo;&rsaquo;
+            </a>
         </div>
     </div>
 </template>
@@ -47,6 +54,16 @@
                 type: String,
                 required: true
             }
+        },
+        mounted() {
+            fetch('https://restcountries.eu/rest/v1/all').then(
+                    res => res.json()
+            ).then(
+                    json => {
+                        this.countryList = json;
+                        this.countryList.unshift({name: ''});
+                    }
+            );
         },
         computed: {
             stage() {
@@ -74,7 +91,10 @@
         data () {
             return {
                 info: Info,
-                numberOfAnswers: 0
+                numberOfAnswers: 0,
+                disabled: false,
+                countryList: [],
+                bool: null
             }
         },
         methods: {
@@ -82,7 +102,6 @@
                 this.$validator.validateAll().then((result) => {
                     if (result == false) {
                         e.preventDefault();
-//                        e.stopPropagation();
                     }
                 });
             },
@@ -96,16 +115,12 @@
                         --this.numberOfAnswers;
                     }
                 }
-                console.log(localStorage);
             },
             saveValue(name, value) {
                 localStorage[name] = value;
             },
             removeValue(name) {
                 delete localStorage[name];
-            },
-            processGroup() {
-                // if not all are saved
             }
         }
     }
